@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+    <TextView 
+      android:text="Add Screen" 
+      android:id="@+id/addscreen" 
+      android:layout_height="wrap_content" 
+      android:layout_width="match_parent">        
+    </TextView>
+    <TextView
+        android:text="@string/add_lbl_Title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">        
+    </TextView>
+    <EditText
+        android:id="@+id/txt_Title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+    </EditText>
+    <TextView
+        android:text="@string/add_lbl_Date"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">        
+    </TextView>
+    <EditText
+        android:id="@+id/txt_Date"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="YYYY-MM-DD">
+    </EditText>
+    <Button
+        android:id="@+id/btn_Add"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="@string/btn_Add"
+        android:onClick="submit_Article">
+	</Button>        
+</LinearLayout>

@@ -1,0 +1,37 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DisplayProduct" >
+
+	<TextView
+		android:text="@string/add_lbl_Title"
+        android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+	</TextView>
+	<EditText
+		android:id="@+id/Name_View"
+        android:hint="@string/hint_addTitle"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+	</EditText>
+    <TextView
+            android:text="@string/add_lbl_Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+    </TextView>
+    <EditText
+            android:id="@+id/Date_View"
+            android:hint="@string/hint_addDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+    </EditText>
+	<Button
+		android:id="@+id/update"
+        android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Update" />
+</LinearLayout>

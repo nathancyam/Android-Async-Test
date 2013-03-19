@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/homeMenuItem"
+  		android:title="@string/homeLabel"
+  		android:alphabeticShortcut="h"/>
+  	<item android:id="@+id/editMenuItem"
+  		android:title="@string/editMenuItemLabel"
+  		android:alphabeticShortcut="e"/>
+  	<item android:id="@+id/addMenuItem"
+  		android:title="@string/addMenuItemLabel"
+  		android:alphabeticShortcut="d"/>
+  	<item android:id="@+id/findMenuItem"
+  		android:title="@string/findMenuItemLabel"
+  		android:alphabeticShortcut="f"/>
+</menu>
+

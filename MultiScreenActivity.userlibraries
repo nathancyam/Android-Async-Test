@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="dexedLibs1" />
+  <library name="dexedLibs">
+    <archive path="/home/nathan/IdeaProjects/MultiScreenActivity/bin/dexedLibs/android-support-v4-d3771581c78749eae118ec351e7d39f6.jar" />
+    <archive path="/home/nathan/IdeaProjects/MultiScreenActivity/bin/dexedLibs/annotations-75b71c0c1eadf4c4d12e79e27a17667b.jar" />
+  </library>
+  <library name="dexedLibs">
+    <archive path="/home/nathan/IdeaProjects/MultiScreenActivity/bin/dexedLibs/annotations-75b71c0c1eadf4c4d12e79e27a17667b.jar" />
+    <archive path="/home/nathan/IdeaProjects/MultiScreenActivity/bin/dexedLibs/android-support-v4-d3771581c78749eae118ec351e7d39f6.jar" />
+  </library>
+</eclipse-userlibraries>
+

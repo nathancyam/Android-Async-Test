@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MultiScreenActivityActivity!</string>
+    <string name="app_name">MultiScreenActivity</string>
+    <string name="homeLabel">HOME</string>
+    <!-- Here live the Setting button levels -->
+    <string name="addMenuItemLabel">ADD</string>
+    <string name="editMenuItemLabel">EDIT</string>
+    <string name="delMenuItemLabel">DEL</string>
+    <string name="findMenuItemLabel">FIND</string>
+    <string name="title_activity_display_product">DisplayProduct</string>
+    <!-- Here live the add stuff activities string -->
+    <string name="add_lbl_Title">Title of Article: </string>
+    <string name="add_lbl_Date">Date: </string>
+
+</resources>
