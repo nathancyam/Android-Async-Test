@@ -2,6 +2,7 @@ package edu.billkas.MultiscreenActivity;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,7 +11,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
 
-public class MultiScreenActivityActivity extends Activity {
+public class MultiScreenActivityActivity extends Activity implements FindProduct.OnProductSelectedListener{
     
 	
 	// **************************************************
@@ -33,7 +34,8 @@ public class MultiScreenActivityActivity extends Activity {
             }
 
             // Create an instance of ExampleFragment
-            AddProduct firstFragment = new AddProduct();
+//            AddProduct firstFragment = new AddProduct();
+            FindProduct firstFragment = new FindProduct();
 
             // In case this activity was started with special instructions from an Intent,
             // pass the Intent's extras to the fragment as arguments
@@ -47,9 +49,15 @@ public class MultiScreenActivityActivity extends Activity {
         SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.action_list,
                 android.R.layout.simple_spinner_dropdown_item);
     }
-    // End Method onCreate
-    // _____________________________________________________
-    
+
+    public void onProductSelected(int position){
+        FindProduct newFragment = new FindProduct();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
     	super.onCreateOptionsMenu(menu);

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import android.app.ListActivity;
+import android.app.ListFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -28,97 +29,52 @@ public class ServerLink {
 	
 	public static final String rootURL = "http://10.0.2.2/core";
 
-    public void getData(FindProduct findProduct) {
-       new ArticlesAsync(findProduct).execute("");
-    }
-	
-	private class ArticlesAsync extends AsyncTask <String, String, Articles[]>{
-        @Override
-        protected Articles[] doInBackground(String... params) {
-            String oput;
-            Articles[] articlesA = null;
-            Log.i("ServerLink.java","ServerLink.ArticlesAsync() Running");
-            try{
-                // HttpClient is the main class that allows the ability to GET, POST, PUT and DELETE data from a webservice
-                HttpClient httpclient = new DefaultHttpClient();
+    public static Articles[] getData(){
+        String oput;
+        Articles[] articlesA = null;
+        Log.i("ServerLink.java","ServerLink.ArticlesAsync() Running");
+        try{
+            // HttpClient is the main class that allows the ability to GET, POST, PUT and DELETE data from a webservice
+            HttpClient httpclient = new DefaultHttpClient();
 
-                // Here we connect with the /articles section of the webservice and define the header as JSON
-                HttpGet getRequest = new HttpGet(rootURL + "/articles/");
-                getRequest.addHeader("accept", "application/json");
+            // Here we connect with the /articles section of the webservice and define the header as JSON
+            HttpGet getRequest = new HttpGet(rootURL + "/articles/");
+            getRequest.addHeader("accept", "application/json");
 
-                // Finally we use HttpResponse to execute the request
-                HttpResponse response = httpclient.execute(getRequest);
+            // Finally we use HttpResponse to execute the request
+            HttpResponse response = httpclient.execute(getRequest);
 
-                if (response.getStatusLine().getStatusCode() != 200) {
-                    throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
-                }
-
-                // We use buffered reader to read from the Input stream
-                System.out.println("nya - bufferedreader");
-                BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-                System.out.println("Output from Server .... \n");
-
-                if((oput = br.readLine()) != null) {
-                    articlesA = processJSONintoArray(oput, articlesA);
-                }
-                else {
-                    System.out.println("Nothing found");
-                }
-                httpclient.getConnectionManager().shutdown();
+            if (response.getStatusLine().getStatusCode() != 200) {
+                throw new RuntimeException("Failed : HTTP error code : " + response.getStatusLine().getStatusCode());
             }
-            catch (ClientProtocolException e) {
-                e.printStackTrace();
+
+            // We use buffered reader to read from the Input stream
+            System.out.println("nya - bufferedreader");
+            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+            System.out.println("Output from Server .... \n");
+
+            if((oput = br.readLine()) != null) {
+                articlesA = processJSONintoArray(oput, articlesA);
             }
-            catch (IOException e) {
-                e.printStackTrace();
-                return null;
+            else {
+                System.out.println("Nothing found");
             }
-            catch (Exception e){
-                // do some thing
-                e.printStackTrace();
-                return null;
-            }
-            System.out.println("ServerLink.ArticlesAsync() Finished");
-            return articlesA;
+            httpclient.getConnectionManager().shutdown();
         }
-
-        protected void onPostExecute(Articles[] articlesA){
-            try{
-                // Look at the end of the line; art_Array while an array of classes can be attached to the Bundle
-                Log.i("FindProduct.java","Setting up ListAdapter");
-                parent.setListAdapter(new ArrayAdapter<Articles>(parent, android.R.layout.simple_list_item_1, android.R.id.text1, articlesA));
-                ListView lv = parent.getListView();
-                lv.setTextFilterEnabled(true);
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    Intent i;
-                    @Override
-                    public void onItemClick(AdapterView<?> parentAdapterView, View view, int position, long id) {
-                        // This is where we find which ListItem the users has selected
-                        Articles article = (Articles)parent.getListAdapter().getItem(position);
-                        i = new Intent(parent.getApplicationContext(), DisplayProduct.class);
-                        i.putExtra("class_ArticleArray", article);
-                        parent.startActivity(i);
-                    }
-                });
-            }
-            catch (Exception ex){
-                ex.printStackTrace();
-            }
+        catch (ClientProtocolException e) {
+            e.printStackTrace();
         }
-
-        public ListActivity getParent() {
-            return parent;
+        catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
-
-        public void setParent(ListActivity parent) {
-            this.parent = parent;
+        catch (Exception e){
+            // do some thing
+            e.printStackTrace();
+            return null;
         }
-
-        private ListActivity parent;
-
-        private ArticlesAsync(ListActivity parent) {
-            this.parent = parent;
-        }
+        System.out.println("ServerLink.ArticlesAsync() Finished");
+        return articlesA;
     }
 
 	public static void postData(String str_Title, String str_Date){
