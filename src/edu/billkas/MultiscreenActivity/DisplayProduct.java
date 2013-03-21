@@ -3,7 +3,10 @@ package edu.billkas.MultiscreenActivity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.util.Log;
 
 public class DisplayProduct extends Activity {
 
@@ -20,6 +23,16 @@ public class DisplayProduct extends Activity {
             dateView.setText(printArticle.date);
 		}
 	}
+
+    public void post_NewArticle(View view){
+        TextView txt_newTitle = (EditText)findViewById(R.id.Name_View);
+        TextView txt_newDate = (EditText)findViewById(R.id.Date_View);
+        String newTitle = txt_newTitle.getText().toString();
+        String newDate = txt_newDate.getText().toString();
+        Log.i("DisplayProduct.java","Adding new items to database");
+        ServerLink.postData(newTitle, newDate);
+
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

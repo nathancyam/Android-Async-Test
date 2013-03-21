@@ -55,27 +55,27 @@ public class FindProduct extends ListActivity {
     // Method to handle menu selections
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-                                                   Intent i;
-                                                   switch(item.getItemId()){
-                                                   case R.id.homeMenuItem:
-                                                   i = new Intent(this, MultiScreenActivityActivity.class);
-                                                   startActivity(i);
-                                                   return true;
-                                                   case R.id.addMenuItem:
-                                                   i = new Intent(this, AddProduct.class);
-                                                   startActivity(i);
-                                                   return true;
-                                                   case R.id.delMenuItem:
-                                                   i = new Intent(this, DeleteProduct.class);
-                                                   startActivity(i);
-                                                   return true;
-                                                   case R.id.editMenuItem:
-                                                   i = new Intent(this, EditProduct.class);
-                                                   startActivity(i);
-                                                   return true;
-                                                   }
-                                                   return false;
-                                                   }
+       Intent i;
+       switch(item.getItemId()){
+           case R.id.homeMenuItem:
+               i = new Intent(this, MultiScreenActivityActivity.class);
+               startActivity(i);
+               return true;
+           case R.id.addMenuItem:
+               i = new Intent(this, AddProduct.class);
+               startActivity(i);
+               return true;
+           case R.id.delMenuItem:
+               i = new Intent(this, DeleteProduct.class);
+               startActivity(i);
+               return true;
+           case R.id.editMenuItem:
+               i = new Intent(this, EditProduct.class);
+               startActivity(i);
+               return true;
+           }
+       return false;
+   }
 // End MENU Methods
 // _______________________________________________________________________
 	    

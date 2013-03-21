@@ -68,28 +68,33 @@ public class ServerLink {
 		return articlesA;
 	}
 
-	public static void postData(String str_Title, String str_Date) throws Exception{
+	public static void postData(String str_Title, String str_Date){
 		String output;
-		DefaultHttpClient httpClient = new DefaultHttpClient();
-		Log.i("User Debug","NYA: Getting localhost...");
-		HttpPost postRequest = new HttpPost(rootURL + "/article/");	
-		
-		Log.i("User Debug","NYA: {\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");	 
-		StringEntity input = new StringEntity("{\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
-		
-		Log.i("User Debug",input.toString());
-		input.setContentType("application/json");
-		postRequest.setEntity(input);
-		 
-		Log.i("User Debug","NYA: Executing postRequest");
-		HttpResponse response = httpClient.execute(postRequest);
-		 
-		BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-		 
-		while ((output = br.readLine()) != null) {
-			System.out.println(output);
-		}			
-		httpClient.getConnectionManager().shutdown();
+        try{
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            Log.i("User Debug","NYA: Getting localhost...");
+            HttpPost postRequest = new HttpPost(rootURL + "/article/");
+
+            Log.i("User Debug","NYA: {\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
+            StringEntity input = new StringEntity("{\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
+
+            Log.i("User Debug",input.toString());
+            input.setContentType("application/json");
+            postRequest.setEntity(input);
+
+            Log.i("User Debug","NYA: Executing postRequest");
+            HttpResponse response = httpClient.execute(postRequest);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+            httpClient.getConnectionManager().shutdown();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 	}
 
 	protected static Articles[] processJSONintoArray(String oput, Articles[] art_Array) {
