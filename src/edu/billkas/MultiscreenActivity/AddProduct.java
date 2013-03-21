@@ -1,24 +1,29 @@
 package edu.billkas.MultiscreenActivity;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
 import android.widget.EditText;
 
-public class AddProduct extends Activity {
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.add);
+public class AddProduct extends Fragment {
+
+//	@Override
+//    public void onCreateView(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.add);
+//    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.add, container, false);
     }
-	
+
 	public void submit_Article(View view){
-		EditText field_Title = (EditText) findViewById(R.id.txt_Title);
-		EditText field_Date = (EditText) findViewById(R.id.txt_Date);
+		EditText field_Title = (EditText) getView().findViewById(R.id.txt_Title);
+		EditText field_Date = (EditText) getView().findViewById(R.id.txt_Date);
 	    String str_Title = field_Title.getText().toString();
 	    String str_Date = field_Date.getText().toString();
 	    try {
@@ -31,36 +36,36 @@ public class AddProduct extends Activity {
 	
 	// *********************************************************************
   	// Methods to bring up Menu and handle selections.
-	 @Override
-	    public boolean onCreateOptionsMenu(Menu menu){
-	    	super.onCreateOptionsMenu(menu);
-	    	MenuInflater inflater = getMenuInflater();
-	    	inflater.inflate(R.menu.addmenu, menu);
-	    	return true;
-	    }
+//	 @Override
+//	    public boolean onCreateOptionsMenu(Menu menu){
+////	    	super.onCreateOptionsMenu(menu);
+////	    	MenuInflater inflater = getMenuInflater();
+////	    	inflater.inflate(R.menu.addmenu, menu);
+//	    	return true;
+//	    }
 	    
 	  	// Method to handle menu selections
 	    @Override
 	    public boolean onOptionsItemSelected(MenuItem item){
-	    	Intent i;
-	    	switch(item.getItemId()){
-	    	case R.id.homeMenuItem:
-	    		i = new Intent(this, MultiScreenActivityActivity.class);
-	    		startActivity(i);	
-	    		return true;
-	    	case R.id.findMenuItem:
-	    		i = new Intent(this, FindProduct.class);
-	    		startActivity(i);	
-	        	return true;
-	    	case R.id.delMenuItem:
-	    		i = new Intent(this, DeleteProduct.class);
-	    		startActivity(i);		
-	        	return true;
-	    	case R.id.editMenuItem:
-	    		i = new Intent(this, EditProduct.class);
-	    		startActivity(i);		
-	        	return true;
-	    	}
+//	    	Intent i;
+//	    	switch(item.getItemId()){
+//	    	case R.id.homeMenuItem:
+//	    		i = new Intent(this, MultiScreenActivityActivity.class);
+//	    		startActivity(i);
+//	    		return true;
+//	    	case R.id.findMenuItem:
+//	    		i = new Intent(this, FindProduct.class);
+//	    		startActivity(i);
+//	        	return true;
+//	    	case R.id.delMenuItem:
+//	    		i = new Intent(this, DeleteProduct.class);
+//	    		startActivity(i);
+//	        	return true;
+//	    	case R.id.editMenuItem:
+//	    		i = new Intent(this, EditProduct.class);
+//	    		startActivity(i);
+//	        	return true;
+//	    	}
 	    return false;
 	    }
     // End MENU Methods
