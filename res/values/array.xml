@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="action_list">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
+        <item>Find</item>
+        <item>Add</item>
     </string-array>
 </resources>

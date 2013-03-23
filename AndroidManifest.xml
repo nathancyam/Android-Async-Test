@@ -24,7 +24,7 @@
         android:label="@string/app_name" >
         <activity
             android:name="edu.billkas.MultiscreenActivity.MultiScreenActivityActivity"
-            android:label="@string/app_name" >
+            android:label="" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

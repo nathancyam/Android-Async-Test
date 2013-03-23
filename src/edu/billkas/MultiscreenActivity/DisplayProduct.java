@@ -3,10 +3,7 @@ package edu.billkas.MultiscreenActivity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
@@ -31,6 +28,12 @@ public class DisplayProduct extends Fragment {
 //	}
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Bundle bundle = getArguments();
         id = bundle.getInt("id");
@@ -52,13 +55,5 @@ public class DisplayProduct extends Fragment {
         String newDate = txt_newDate.getText().toString();
         Log.i("DisplayProduct.java","Adding new items to database");
         ServerLink.postData(newTitle, newDate);
-
     }
-
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.display, menu);
-//		return true;
-//	}
 }

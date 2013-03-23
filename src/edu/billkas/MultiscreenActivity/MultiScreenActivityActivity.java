@@ -1,5 +1,6 @@
 package edu.billkas.MultiscreenActivity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -23,6 +24,41 @@ public class MultiScreenActivityActivity extends Activity implements FindProduct
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        // Initialise the actionbar
+        ActionBar actionBar = getActionBar();
+
+        // Here we create the SpinnerAdapter
+        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.action_list, android.R.layout.simple_spinner_dropdown_item);
+        ActionBar.OnNavigationListener mNavListener = new ActionBar.OnNavigationListener(){
+            String[] navMenu = getResources().getStringArray(R.array.action_list);
+
+            @Override
+            public boolean onNavigationItemSelected(int itemPosition, long itemId) {
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                switch (itemPosition){
+                    case 0:
+                        FindProduct findFragment = new FindProduct();
+                        ft.replace(R.id.fragment_container, findFragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        return true;
+                    case 1:
+                        AddProduct addFragment = new AddProduct();
+                        ft.replace(R.id.fragment_container, addFragment);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                        return true;
+                    default:
+                        break;
+                }
+                return false;  //To change body of implemented methods use File | Settings | File Templates.
+            }
+        };
+
+        // Create Action Bar
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
+        actionBar.setListNavigationCallbacks(mSpinnerAdapter, mNavListener);
+
         // Check that the activity is using the layout version with
         // the fragment_container FrameLayout
         if (findViewById(R.id.fragment_container) != null) {
@@ -44,10 +80,6 @@ public class MultiScreenActivityActivity extends Activity implements FindProduct
             // Add the fragment to the 'fragment_container' FrameLayout
             getFragmentManager().beginTransaction().add(R.id.fragment_container, firstFragment).commit();
         }
-
-        // Here we create the SpinnerAdapter
-        SpinnerAdapter mSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.action_list,
-                android.R.layout.simple_spinner_dropdown_item);
     }
 
     // If the product is selected, then we show it on the DisplayProduct.java fragment

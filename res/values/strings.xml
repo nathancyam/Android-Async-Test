@@ -16,5 +16,6 @@
     <string name="btn_Add">Add Article</string>
     <string name="hint_addTitle">Add Title</string>
     <string name="hint_addDate">Add Date</string>
+    <string name="search">Search</string>
 
 </resources>

@@ -50,9 +50,11 @@ public class FindProduct extends ListFragment {
     }
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+        getActivity().invalidateOptionsMenu();
         new getArticles().execute();
+        setHasOptionsMenu(true);
     }
 
     private class getArticles extends AsyncTask<Void, Void, Articles[]>{
@@ -75,40 +77,17 @@ public class FindProduct extends ListFragment {
     }
 
 //*********************************************************************
-	// Methods to bring up Menu and handle selections.
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu){
-//        super.onCreateOptionsMenu(menu);
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.findmenu, menu);
-//        return true;
-//    }
+//	Methods to bring up Menu and handle selections.
+//*********************************************************************
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        Log.i("FindProduct.java","Creating Options Menu");
+    }
 	    
     // Method to handle menu selections
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-//       Intent i;
-//       switch(item.getItemId()){
-//           case R.id.homeMenuItem:
-//               i = new Intent(this, MultiScreenActivityActivity.class);
-//               startActivity(i);
-//               return true;
-//           case R.id.addMenuItem:
-//               i = new Intent(this, AddProduct.class);
-//               startActivity(i);
-//               return true;
-//           case R.id.delMenuItem:
-//               i = new Intent(this, DeleteProduct.class);
-//               startActivity(i);
-//               return true;
-//           case R.id.editMenuItem:
-//               i = new Intent(this, EditProduct.class);
-//               startActivity(i);
-//               return true;
-//           }
        return false;
    }
-// End MENU Methods
-// _______________________________________________________________________
-	    
-} // End ACTIVITY - FindProduct
+}
