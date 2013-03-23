@@ -25,7 +25,7 @@ public class FindProduct extends ListFragment {
     OnProductSelectedListener mCallback;
 
     public interface OnProductSelectedListener{
-        public void onProductSelected(int position);
+        public void onProductSelected(Articles article);
     }
 
     @Override
@@ -44,7 +44,9 @@ public class FindProduct extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Send the event to the host activity
-        mCallback.onProductSelected(position);
+        Log.i("FindProduct.java","Clicked on Object: " + position);
+        Articles article = (Articles)getListAdapter().getItem(position);
+        mCallback.onProductSelected(article);
     }
 
 	@Override

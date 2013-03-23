@@ -13,12 +13,15 @@ import android.util.Log;
 
 public class DisplayProduct extends Fragment {
 
+    public static int id;
+    public static String title = null;
+    public static String date = null;
 //	@Override
 //	public void onCreate(Bundle savedInstanceState) {
 //		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.display);
 //		TextView nameView = (TextView)findViewById(R.id.Name_View);
-//        TextView dateView = (TextView)findViewById(R.id.Date_View);
+//      TextView dateView = (TextView)findViewById(R.id.Date_View);
 //		Bundle extras = getIntent().getExtras();
 //		if(extras != null) {
 //            Articles printArticle = (Articles)getIntent().getExtras().get("class_ArticleArray");
@@ -29,10 +32,17 @@ public class DisplayProduct extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-		TextView nameView = (TextView)getView().findViewById(R.id.Name_View);
-        TextView dateView = (TextView)getView().findViewById(R.id.Date_View);
-        return inflater.inflate(R.layout.display, container, false);
+        Bundle bundle = getArguments();
+        id = bundle.getInt("id");
+        title = bundle.getString("title");
+        date = bundle.getString("date");
+        Log.i("DisplayProduct",id + title + date);
+        View viewFrag =  inflater.inflate(R.layout.display, container, false);
+        TextView nameView = (TextView)viewFrag.findViewById(R.id.Name_View);
+        TextView dateView = (TextView)viewFrag.findViewById(R.id.Date_View);
+        nameView.setText(title);
+        dateView.setText(date);
+        return viewFrag;
     }
 
     public void post_NewArticle(View view){

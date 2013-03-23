@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -34,7 +35,6 @@ public class MultiScreenActivityActivity extends Activity implements FindProduct
             }
 
             // Create an instance of ExampleFragment
-//            AddProduct firstFragment = new AddProduct();
             FindProduct firstFragment = new FindProduct();
 
             // In case this activity was started with special instructions from an Intent,
@@ -50,8 +50,17 @@ public class MultiScreenActivityActivity extends Activity implements FindProduct
                 android.R.layout.simple_spinner_dropdown_item);
     }
 
-    public void onProductSelected(int position){
-        FindProduct newFragment = new FindProduct();
+    // If the product is selected, then we show it on the DisplayProduct.java fragment
+    public void onProductSelected(Articles article){
+//        Log.i("Main","article details from class: " + product.id + product.title + product.date);
+        DisplayProduct newFragment = new DisplayProduct();
+        Bundle bundle = new Bundle();
+        // Add items to the bundle to be transferred to the new fragment (DisplayProduct fragment)
+        bundle.putInt("id", article.id);
+        bundle.putString("title", article.title);
+        bundle.putString("date", article.date);
+        newFragment.setArguments(bundle);
+
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, newFragment);
         transaction.addToBackStack(null);
