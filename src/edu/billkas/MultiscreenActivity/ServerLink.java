@@ -92,7 +92,8 @@ public class ServerLink {
             postRequest.setEntity(input);
 
             Log.i("User Debug","NYA: Executing postRequest");
-            HttpResponse response = httpClient.execute(postRequest);
+            HttpResponse response;
+            response = httpClient.execute(postRequest);
 
             BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
 

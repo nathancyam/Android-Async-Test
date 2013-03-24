@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.*;
+import android.widget.Button;
 import android.widget.EditText;
 
-public class AddProduct extends Fragment {
+public class AddProduct extends Fragment implements View.OnClickListener {
 
 //	@Override
 //    public void onCreateView(Bundle savedInstanceState) {
@@ -18,20 +20,48 @@ public class AddProduct extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.add, container, false);
+        View v = inflater.inflate(R.layout.add, container, false);
+        Button addbtn = (Button)v.findViewById(R.id.btn_Add);
+        addbtn.setOnClickListener(this);
+        return v;
+    }
+
+    @Override
+    public void onClick(View v) {
+        try{
+            switch(v.getId()){
+                case R.id.btn_Add:
+                    Log.i("onClick","Clicking this");
+                    submit_Article(v);
+                    break;
+                default:
+                    break;
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
 	public void submit_Article(View view){
 		EditText field_Title = (EditText) getView().findViewById(R.id.txt_Title);
 		EditText field_Date = (EditText) getView().findViewById(R.id.txt_Date);
-	    String str_Title = field_Title.getText().toString();
-	    String str_Date = field_Date.getText().toString();
-	    try {
-			ServerLink.postData(str_Title, str_Date);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	    final String str_Title = field_Title.getText().toString();
+	    final String str_Date = field_Date.getText().toString();
+        Runnable runBackground = new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Thread.sleep(2000);
+                }
+                catch(InterruptedException ex){
+                    ex.printStackTrace();
+                }
+                ServerLink.postData(str_Title, str_Date);
+            }
+        };
+        new Thread(runBackground).start();
 	}
 	
 	// *********************************************************************
@@ -68,6 +98,7 @@ public class AddProduct extends Fragment {
 //	    	}
 	    return false;
 	    }
+
     // End MENU Methods
     // _______________________________________________________________________
 	    
