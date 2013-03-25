@@ -20,7 +20,7 @@ import android.util.Log;
 
 public class ServerLink {
 	
-	public static final String rootURL = "http://10.0.2.2/core";
+	public static final String rootURL = "http://10.0.2.2/Sites/Events";
 	
 	public static Articles[] getData(){
 		
