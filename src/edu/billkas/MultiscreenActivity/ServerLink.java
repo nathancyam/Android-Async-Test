@@ -11,6 +11,7 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
@@ -68,29 +69,61 @@ public class ServerLink {
 		return articlesA;
 	}
 
-	public static void postData(String str_Title, String str_Date) throws Exception{
+	public static void postData(String str_Title, String str_Date){
 		String output;
-		DefaultHttpClient httpClient = new DefaultHttpClient();
-		Log.i("User Debug","NYA: Getting localhost...");
-		HttpPost postRequest = new HttpPost(rootURL + "/article/");	
-		
-		Log.i("User Debug","NYA: {\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");	 
-		StringEntity input = new StringEntity("{\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
-		
-		Log.i("User Debug",input.toString());
-		input.setContentType("application/json");
-		postRequest.setEntity(input);
-		 
-		Log.i("User Debug","NYA: Executing postRequest");
-		HttpResponse response = httpClient.execute(postRequest);
-		 
-		BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
-		 
-		while ((output = br.readLine()) != null) {
-			System.out.println(output);
-		}			
-		httpClient.getConnectionManager().shutdown();
+        try{
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            Log.i("User Debug","NYA: Getting localhost...");
+            HttpPost postRequest = new HttpPost(rootURL + "/article/");
+
+            Log.i("User Debug","NYA: {\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
+            StringEntity input = new StringEntity("{\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
+
+            Log.i("User Debug",input.toString());
+            input.setContentType("application/json");
+            postRequest.setEntity(input);
+
+            Log.i("User Debug","NYA: Executing postRequest");
+            HttpResponse response = httpClient.execute(postRequest);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+            httpClient.getConnectionManager().shutdown();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
 	}
+
+    public static void putData(int articleID, String str_Title, String str_Date){
+        String output;
+        try{
+            DefaultHttpClient httpClient = new DefaultHttpClient();
+            Log.i("SEIBA","Getting localhost...");
+            HttpPut putRequest = new HttpPut(rootURL + "/article/" + articleID);
+            Log.i("SEIBA","Posting at URL:" + rootURL + "/article/:" + articleID);
+
+            StringEntity input = new StringEntity("{\"title\":\"" + str_Title + "\",\"date\":\"" + str_Date + "\"}");
+
+            input.setContentType("application/json");
+            putRequest.setEntity(input);
+
+            HttpResponse response = httpClient.execute(putRequest);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+            httpClient.getConnectionManager().shutdown();
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
 
 	protected static Articles[] processJSONintoArray(String oput, Articles[] art_Array) {
 		System.out.println("ServerLink.processJSONintoArray Running");

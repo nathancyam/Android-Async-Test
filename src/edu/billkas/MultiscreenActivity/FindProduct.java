@@ -4,6 +4,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -37,7 +38,8 @@ public class FindProduct extends ListActivity {
                 Articles article = (Articles)getListAdapter().getItem(position);
 				i = new Intent(getApplicationContext(), DisplayProduct.class);
                 i.putExtra("class_ArticleArray", article);
-				startActivity(i);
+                Log.i("FindProduct.java","Going to DisplayProduct.java");
+                startActivity(i);
 			}
 		});
 	}
