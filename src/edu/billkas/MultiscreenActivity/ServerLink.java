@@ -3,12 +3,10 @@ package edu.billkas.MultiscreenActivity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -125,7 +123,26 @@ public class ServerLink {
         }
     }
 
+    public static void deleteData(int articleID){
+        String output;
+        DefaultHttpClient httpClient = new DefaultHttpClient();
+        Log.w("SEIBA - ServerLink.java","Deleting data");
+        try{
+            HttpDelete delRequest = new HttpDelete(rootURL + "/article/" + articleID);
+            HttpResponse response = httpClient.execute(delRequest);
+            BufferedReader br = new BufferedReader(new InputStreamReader((response.getEntity().getContent())));
+            while ((output = br.readLine()) != null) {
+                System.out.println(output);
+            }
+            httpClient.getConnectionManager().shutdown();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
 	protected static Articles[] processJSONintoArray(String oput, Articles[] art_Array) {
+
 		System.out.println("ServerLink.processJSONintoArray Running");
 		System.out.println(oput);
 		try{
@@ -147,4 +164,5 @@ public class ServerLink {
 		System.out.println("ServerLink.processJSONintoArray Finished");
 		return art_Array; 
 	}
+
 }

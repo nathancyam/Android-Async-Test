@@ -4,13 +4,10 @@
     <item android:id="@+id/homeMenuItem"
   		android:title="@string/homeLabel"
   		android:alphabeticShortcut="h"/>
-  	<item android:id="@+id/editMenuItem"
-  		android:title="@string/editMenuItemLabel"
+  	<item android:id="@+id/updateMenuItem"
+  		android:title="@string/updateMenuItem"
   		android:alphabeticShortcut="e"/>
-  	<item android:id="@+id/addMenuItem"
-  		android:title="@string/addMenuItemLabel"
+  	<item android:id="@+id/deleteMenuItem"
+  		android:title="@string/delMenuItemLabel"
   		android:alphabeticShortcut="d"/>
-  	<item android:id="@+id/findMenuItem"
-  		android:title="@string/findMenuItemLabel"
-  		android:alphabeticShortcut="f"/>
 </menu>

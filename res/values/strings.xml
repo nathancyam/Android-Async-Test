@@ -18,4 +18,6 @@
     <string name="hint_addDate">Add Date</string>
     <!-- Here live the add stuff activities string -->
     <string name="edit_Title">EDIT ARTICLES</string>
+    <string name="menu_Delete">Delete</string>
+    <string name="updateMenuItem">Update</string>
 </resources>

@@ -14,37 +14,35 @@ public class DeleteProduct extends Activity {
         setContentView(R.layout.delete);
     }
 	
-	 @Override
-	    public boolean onCreateOptionsMenu(Menu menu){
-	    	super.onCreateOptionsMenu(menu);
-	    	MenuInflater inflater = getMenuInflater();
-	    	inflater.inflate(R.menu.deletemenu, menu);
-	    	return true;
-	    }
-	    
-	 // *********************************************************************
-	  	// Method 
-	    @Override
-	    public boolean onOptionsItemSelected(MenuItem item){
-	    	Intent i;
-	    	switch(item.getItemId()){
-	    	case R.id.homeMenuItem:
-	    		i = new Intent(this, MultiScreenActivityActivity.class);
-	    		startActivity(i);	
-	    		return true;
-	    	case R.id.findMenuItem:
-	    		i = new Intent(this, FindProduct.class);
-	    		startActivity(i);	
-	        	return true;
-	    	case R.id.addMenuItem:
-	    		i = new Intent(this, AddProduct.class);
-	    		startActivity(i);		
-	        	return true;
-	    	case R.id.editMenuItem:
-	    		i = new Intent(this, EditProduct.class);
-	    		startActivity(i);		
-	        	return true;
-	    	}
-	    return false;
-	    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        super.onCreateOptionsMenu(menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.deletemenu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent i;
+        switch(item.getItemId()){
+            case R.id.homeMenuItem:
+                i = new Intent(this, MultiScreenActivityActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.findMenuItem:
+                i = new Intent(this, FindProduct.class);
+                startActivity(i);
+                return true;
+            case R.id.addMenuItem:
+                i = new Intent(this, AddProduct.class);
+                startActivity(i);
+                return true;
+            case R.id.editMenuItem:
+                i = new Intent(this, EditProduct.class);
+                startActivity(i);
+                return true;
+        }
+        return false;
+    }
 }
