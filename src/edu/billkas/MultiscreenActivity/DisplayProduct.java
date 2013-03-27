@@ -34,6 +34,7 @@ public class DisplayProduct extends Activity{
             nameView.setText(orig_title);
             dateView.setText(orig_date);
             articleID = printArticle.id;
+            setTitle(printArticle.title);
 		}
         // Add buttons here
         Button btn_Update = (Button)findViewById(R.id.btn_update);

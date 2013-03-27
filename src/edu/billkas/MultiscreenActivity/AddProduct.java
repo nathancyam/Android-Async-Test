@@ -13,6 +13,7 @@ public class AddProduct extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Add Articles");
         setContentView(R.layout.add);
     }
 	
